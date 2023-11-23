@@ -1,23 +1,23 @@
-var isDate = function (input) {
-  //   write your code here
-	if (input instanceof Date) {
-    return true;
-  }
+function isDate(input) {
+    if (input instanceof Date && !isNaN(input)) {
+        return true;
+    }
 
-  // Check if the input is a valid date string
-  if (typeof input === 'string') {
-    const date = new Date(input);
-    return !isNaN(date.getTime());
-  }
-	if (typeof input === 'number' && !isNaN(input)) {
-    const date = new Date(input);
-    return !isNaN(date.getTime());
-  }
+    if (typeof input === 'string') {
+        const dateObject = new Date(input);
+        return !isNaN(dateObject);
+    }
 
-  // If none of the conditions are met, return false
-  return false;
-};
+    return false;
+}
 
-// Do not change the code below.
-const input = prompt("Enter Date.");
-alert(isDate(input));
+// Take user input
+let userInput = prompt("Enter a date or a string that represents a date:");
+let result = isDate(userInput);
+
+// Display the result using alert
+if (result) {
+    alert("The input is a valid date or a string that can be parsed into a valid date.");
+} else {
+    alert("The input is not a valid date or a string that can be parsed into a valid date.");
+}
